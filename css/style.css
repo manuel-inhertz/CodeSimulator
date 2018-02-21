@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css?family=Encode+Sans');
+body {
+	font-family: 'Encode Sans', sans-serif; 
+	font-size: 100%;
+	margin: 0;
+	padding: 0;
+}
+#header {
+	height: 30px;
+	padding: 5px;
+	margin: 0 auto;
+	background-color: #cccccc;
+}
+#header img {
+	float: left;
+	width: 32px;
+	position: relative;
+	margin-right: 5px;
+	bottom: 2px;
+	left: 10px;
+}
+#header h1 {
+	text-align: left;
+	font-size: 150% !important;
+	font-weight: bold;
+	color: black;
+	float: left;
+	margin: 0;
+	padding: 0;
+	position: relative;
+	bottom: 2px;
+	left: 10px;
+}
+.selectors {
+	width: 200px;
+	height: 35px;
+	margin: 0 auto;
+}
+.selectors button {
+	float: left;
+	padding: 5px;
+	color: black;
+	border: 1px solid grey;
+	background-color: #EEEEEE;
+}
+.hoverButton {
+	background-color: grey !important; 
+}
+#html {
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+}
+#output {
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+#wrapper textarea {
+	resize: none;
+	border-top: none;
+	border-color: grey;
+}
+#wrapper iframe {
+	border: none;
+}
+.panel {
+	float: left;
+	border-left: none;
+}
+.active {
+	background-color: lightblue !important;
+}
+.hidden {
+	display: none;
+}

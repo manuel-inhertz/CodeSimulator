@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Code Simulator</title>
+	<link rel="icon" type="image/x-icon" href="favicon/favicon.ico">
+	<link rel="apple-touch-icon-precomposed" href="favicon/code-break-152-246266.png">
+	<link rel="apple-touch-icon-precomposed" sizes="152x152" href="favicon/code-break-152-246266.png">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="favicon/code-break-144-246266.png">
+	<link rel="apple-touch-icon-precomposed" sizes="120x120" href="favicon/code-break-120-246266.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="favicon/code-break-114-246266.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="favicon/code-break-72-246266.png">
+	<link rel="apple-touch-icon-precomposed" href="favicon/code-break-57-246266.png">
+	<link rel="icon" href="/path/to/code-break-32-246266.png" sizes="32x32">
+	<link rel="stylesheet" href="js/jquery-ui/jquery-ui.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<script src="js/jquery.min.js"></script>
+  	<script src="js/jquery-ui/jquery-ui.js"></script>
+</head>
+<body>
+   <!-- Header -->
+   <div id="header">
+   		<img src="favicon/code-break-144-246266.png"/>
+   		<h1>CodeSimulator</h1>
+   		<div class="selectors">
+   			<button class="active" id="html">HTML</button>
+   			<button id="css">CSS</button>
+   			<button id="js">JavaScript</button>
+   			<button class="active" id="output">Output</button>
+   		</div>
+   </div>
+   <!-- Wrapper -->
+   <div id="wrapper">
+   		<textarea id="htmlPanel" class="panel"><h1>Example</h1></textarea>	
+   		<textarea id="cssPanel" class="panel hidden"></textarea>
+   		<textarea id="jsPanel" class="panel hidden"></textarea>
+   		<iframe id="outputPanel" class="panel"></iframe>
+   </div>
+   <!-- Script -->
+   <script type="text/javascript">
+   		function updateOutput () { //runs html/css/js within iframe output
+   			$("iframe").contents().find("html").html('<html><head><style type="text/css">'+ $("#cssPanel").val()+ "</style></head><body>" + $("#htmlPanel").val()+"</body></html>");
+   				document.getElementById("outputPanel").contentWindow.eval($("#jsPanel").val());
+   		}
+   		//changes buttons background when hover
+   		$(".selectors button").hover(function(){ 
+   			$(this).addClass("hoverButton");
+   		}, function(){
+   			$(this).removeClass("hoverButton");
+   		})
+   		//changes buttons background when active
+   		$(".selectors button").click(function(){ 
+   			$(this).toggleClass("active");
+   			$(this).removeClass("hoverButton");
+   			var panelId = $(this).attr("id") + "Panel"; //gets buttons ids
+   			$("#" + panelId).toggleClass("hidden"); //shows/hides 
+   			var numberOfActivePanels = 4 - $(".hidden").length;
+   			$(".panel").width(($(window).width() / numberOfActivePanels) - 10); //sets panels width based on window and header
+   		})
+   		//sets panels height based on window and header
+   		$(".panel").height($(window).height() - $("#header").height() - 15);
+   		//sets panels width based on window and header 
+   		$(".panel").width(($(window).width() / 2) - 10);
+   		updateOutput();
+   		//updates panels content on output iframe 
+   		$("textarea").on('change keyup paste', function() {
+   			updateOutput();
+   		})
+   </script>
+</body>
+</html>
